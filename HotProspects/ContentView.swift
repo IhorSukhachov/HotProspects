@@ -16,6 +16,10 @@ struct ContentView: View {
             List(users, id: \.self, selection: $selection) {user in
                 Text(user)
             }
+            
+            if let selection {
+                Text("You selected \(selection)")
+            }
         }
         .padding()
     }
