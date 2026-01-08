@@ -9,10 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     let users = ["Tohru", "Yuki", "Kyo", "Sora"]
+    @State private var selection: String?
     
     var body: some View {
         VStack {
-            List(users, id: \.self) {user in
+            List(users, id: \.self, selection: $selection) {user in
                 Text(user)
             }
         }
