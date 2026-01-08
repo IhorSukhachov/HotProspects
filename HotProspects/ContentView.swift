@@ -20,6 +20,8 @@ struct ContentView: View {
             if selection.isEmpty == false {
                 Text("You selected \(selection.formatted())")
             }
+            
+            EditButton()
         }
         .padding()
     }
