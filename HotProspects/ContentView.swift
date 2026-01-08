@@ -13,15 +13,30 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            List(users, id: \.self, selection: $selection) {user in
-                Text(user)
+//            List(users, id: \.self, selection: $selection) {user in
+//                Text(user)
+//            }
+//            
+//            if selection.isEmpty == false {
+//                Text("You selected \(selection.formatted())")
+//            }
+//            
+//            EditButton()
+            TabView {
+                Text("Tab one")
+                    .tabItem {
+                        Label("One", systemImage: "house")
+                    }
+                Text("Tab two")
+                    .tabItem {
+                        Label ("Two", systemImage: "star")
+                    }
+                Text("Tab three")
+                    .tabItem {
+                        Label ("Three", systemImage: "person.3")
+                    }
+                
             }
-            
-            if selection.isEmpty == false {
-                Text("You selected \(selection.formatted())")
-            }
-            
-            EditButton()
         }
         .padding()
     }
