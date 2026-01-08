@@ -11,6 +11,8 @@ struct ContentView: View {
     let users = ["Tohru", "Yuki", "Kyo", "Sora"]
     @State private var selection = Set<String>()
     
+    @State private var selectedTab = "One"
+    
     var body: some View {
         VStack {
 //            List(users, id: \.self, selection: $selection) {user in
@@ -22,21 +24,38 @@ struct ContentView: View {
 //            }
 //            
 //            EditButton()
-            TabView {
-                Text("Tab one")
-                    .tabItem {
-                        Label("One", systemImage: "house")
-                    }
-                Text("Tab two")
-                    .tabItem {
-                        Label ("Two", systemImage: "star")
-                    }
-                Text("Tab three")
-                    .tabItem {
-                        Label ("Three", systemImage: "person.3")
-                    }
+//            TabView {
+//                Text("Tab one")
+//                    .tabItem {
+//                        Label("One", systemImage: "house")
+//                    }
+//                Text("Tab two")
+//                    .tabItem {
+//                        Label ("Two", systemImage: "star")
+//                    }
+//                Text("Tab three")
+//                    .tabItem {
+//                        Label ("Three", systemImage: "person.3")
+//                    }
+//                
+//            }
+            TabView(selection: $selectedTab) {
+                Button("Show tab 2") {
+                    selectedTab = "Two"
+                }
+                .tabItem {
+                    Label("One", systemImage: "star")
+                }
+                .tag("One")
                 
+                
+                Text("Tab 2")
+                    .tabItem {
+                        Label ("Two", systemImage: "circle")
+                    }
+                    .tag( "Two" )
             }
+            
         }
         .padding()
     }
