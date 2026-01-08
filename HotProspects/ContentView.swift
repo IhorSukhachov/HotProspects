@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     let users = ["Tohru", "Yuki", "Kyo", "Sora"]
-    @State private var selection: String?
+    @State private var selection = Set<String>()
     
     var body: some View {
         VStack {
@@ -17,8 +17,8 @@ struct ContentView: View {
                 Text(user)
             }
             
-            if let selection {
-                Text("You selected \(selection)")
+            if selection.isEmpty == false {
+                Text("You selected \(selection.formatted())")
             }
         }
         .padding()
