@@ -66,6 +66,7 @@ struct ContentView: View {
 //                await fetchReadings()
 //            }
         Image(.example)
+            .interpolation(.none)
             .resizable()
             .scaledToFit()
             .background(.black)
