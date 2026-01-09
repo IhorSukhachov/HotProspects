@@ -73,7 +73,7 @@ struct ContentView: View {
         let readings = try JSONDecoder().decode([Double].self, from: data)
           return output = "Found \(readings.count) readings"
         }
-        
+        let result = await fetchTask.result
     }
 }
 
