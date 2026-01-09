@@ -14,6 +14,7 @@ struct ContentView: View {
 //    @State private var selectedTab = "One"
     
     @State private var output = ""
+    @State private var backgroundColor: Color = .blue
     
     var body: some View {
 //        VStack {
@@ -65,11 +66,22 @@ struct ContentView: View {
 //            .task {
 //                await fetchReadings()
 //            }
-        Image(.example)
-            .interpolation(.none)
-            .resizable()
-            .scaledToFit()
-            .background(.black)
+//        Image(.example)
+//            .interpolation(.none)
+//            .resizable()
+//            .scaledToFit()
+//            .background(.black)
+        Text("Hello world!")
+            .padding()
+            .background(backgroundColor)
+        Text("Change color")
+            .padding(10)
+            .contextMenu {
+                Button("Red"){backgroundColor = .red}
+                Button("Yellow"){backgroundColor = .yellow}
+                Button("Green"){backgroundColor = .green}
+                
+            }
     }
     func fetchReadings() async {
         let fetchTask = Task {
