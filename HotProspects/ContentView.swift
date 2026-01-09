@@ -73,7 +73,7 @@ struct ContentView: View {
         let readings = try JSONDecoder().decode([Double].self, from: data)
             output = "Found \(readings.count) readings"
         } catch {
-            
+            print("Download error ")
         }
         
     }
