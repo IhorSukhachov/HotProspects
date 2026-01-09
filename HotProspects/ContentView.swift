@@ -60,11 +60,15 @@ struct ContentView: View {
 //            
 //        }
 //        .padding()
-        
-        Text(output)
-            .task {
-                await fetchReadings()
-            }
+//        
+//        Text(output)
+//            .task {
+//                await fetchReadings()
+//            }
+        Image(.example)
+            .resizable()
+            .scaledToFit()
+            .background(.black)
     }
     func fetchReadings() async {
         let fetchTask = Task {
