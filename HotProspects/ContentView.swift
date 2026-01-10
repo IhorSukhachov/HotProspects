@@ -5,10 +5,18 @@
 //  Created by Ihor Sukhachov on 08.01.2026.
 //
 
+import SamplePackage
 import SwiftUI
 import UserNotifications
 
 struct ContentView: View {
+    let possibleNumbers = Array(1...60)
+    
+    var results: String {
+        let selected = possibleNumbers.random(7).sorted()
+        let strings = selected.map(String.init)
+        return strings.formatted()
+    }
     
     var body: some View {
         VStack {
@@ -38,6 +46,7 @@ struct ContentView: View {
                 UNUserNotificationCenter.current().add(request)
             }
         }
+        Text(results)
         
     }
 }
