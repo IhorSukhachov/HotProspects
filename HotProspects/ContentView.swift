@@ -71,17 +71,17 @@ struct ContentView: View {
 //            .resizable()
 //            .scaledToFit()
 //            .background(.black)
-        Text("Hello world!")
-            .padding()
-            .background(backgroundColor)
-        Text("Change color")
-            .padding(10)
-            .contextMenu {
-                Button("Red", systemImage: "checkmark.circle.fill"){backgroundColor = .red}
-                Button("Yellow", systemImage: ""){backgroundColor = .yellow}
-                Button("Green"){backgroundColor = .green}
-                
-            }
+//        Text("Hello world!")
+//            .padding()
+//            .background(backgroundColor)
+//        Text("Change color")
+//            .padding(10)
+//            .contextMenu {
+//                Button("Red", systemImage: "checkmark.circle.fill"){backgroundColor = .red}
+//                Button("Yellow", systemImage: ""){backgroundColor = .yellow}
+//                Button("Green"){backgroundColor = .green}
+//                
+//            }
         List {
             Text("Hello sweetheart")
                 .swipeActions {
