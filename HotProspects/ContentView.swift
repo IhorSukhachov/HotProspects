@@ -82,6 +82,14 @@ struct ContentView: View {
                 Button("Green"){backgroundColor = .green}
                 
             }
+        List {
+            Text("Hello sweetheart")
+                .swipeActions {
+                    Button("Send message", systemImage: "message") {
+                        print("message is sent")
+                    }
+                }
+        }
     }
     func fetchReadings() async {
         let fetchTask = Task {
