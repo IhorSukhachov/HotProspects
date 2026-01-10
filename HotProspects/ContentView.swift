@@ -85,6 +85,9 @@ struct ContentView: View {
         List {
             Text("Hello sweetheart")
                 .swipeActions {
+                    Button("Delete",systemImage: "minus.circle", role: .destructive) {}
+                }
+                .swipeActions(edge:.leading) {
                     Button("Send message", systemImage: "message") {
                         print("message is sent")
                     }
