@@ -91,6 +91,7 @@ struct ContentView: View {
                     Button("Send message", systemImage: "message") {
                         print("message is sent")
                     }
+                    .tint(.orange)
                 }
         }
     }
