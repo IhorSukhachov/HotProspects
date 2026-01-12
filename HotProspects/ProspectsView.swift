@@ -30,8 +30,14 @@ struct ProspectsView: View {
     
     var body: some View {
         NavigationStack {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            Text("People: \(prospects.count)")
                 .navigationTitle(title)
+                .toolbar {
+                    Button("Scan",systemImage: "qrcode.viewfinder") {
+                        let prospect = Prospect(name: "New Prospect", emailAddress: "new@prospect.com", isContacted: false)
+                        modelContext.insert(prospect)
+                    }
+                }
         }
       
     }
@@ -39,5 +45,6 @@ struct ProspectsView: View {
 
 #Preview {
     ProspectsView(filter: .none)
+        .modelContainer(for: Prospect.self)
 }
 
