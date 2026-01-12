@@ -20,11 +20,16 @@ struct ContentView: View {
                 }
             ProspectsView()
                 .tabItem {
-                        Label("Everyone", systemImage: "person.3")
+                        Label("Contacted", systemImage: "checkmark.circle")
                 }
             ProspectsView()
                 .tabItem {
-                        Label("Everyone", systemImage: "person.3")
+                        Label("Uncontacted", systemImage: "questionmark.diamond")
+                }
+            
+            MeView()
+                .tabItem {
+                    Label("Me", systemImage: "person.crop.square")
                 }
         }
         
