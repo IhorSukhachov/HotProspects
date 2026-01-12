@@ -12,7 +12,21 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-
+        
+        TabView {
+            ProspectsView()
+                .tabItem {
+                        Label("Everyone", systemImage: "person.3")
+                }
+            ProspectsView()
+                .tabItem {
+                        Label("Everyone", systemImage: "person.3")
+                }
+            ProspectsView()
+                .tabItem {
+                        Label("Everyone", systemImage: "person.3")
+                }
+        }
         
     }
 }
