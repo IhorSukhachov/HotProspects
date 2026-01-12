@@ -5,12 +5,15 @@
 //  Created by Ihor Sukhachov on 12.01.2026.
 //
 
+import SwiftData
 import SwiftUI
 
 struct ProspectsView: View {
     enum FilterType {
         case none, contacted, uncontacted
     }
+    @Environment(\.modelContext) var modelContext
+    @Query(sort: \Prospect.name) var prospects: [Prospect]
     
     let filter: FilterType
     
