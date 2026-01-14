@@ -65,8 +65,10 @@ struct ProspectsView: View {
             }
                 .navigationTitle(title)
                 .toolbar {
-                    Button("Scan",systemImage: "qrcode.viewfinder") {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button("Scan",systemImage: "qrcode.viewfinder") {
                         isShowingScanner = true
+                            }
                     }
                     ToolbarItem(placement: .topBarLeading) {
                         EditButton()
