@@ -26,6 +26,7 @@ struct MeView: View {
                     .font(.title)
                 
                 Image(uiImage: generateQRCode(from: "\(name)\n\(emailAddress)"))
+                    .interpolation(.none)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 200, height: 200)
