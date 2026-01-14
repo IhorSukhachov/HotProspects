@@ -4,7 +4,7 @@
 //
 //  Created by Ihor Sukhachov on 12.01.2026.
 //
-
+import CodeScanner
 import SwiftData
 import SwiftUI
 
@@ -14,6 +14,8 @@ struct ProspectsView: View {
     }
     @Environment(\.modelContext) var modelContext
     @Query(sort: \Prospect.name) var prospects: [Prospect]
+    
+    @State private var isShowingScanner = false
     
     let filter: FilterType
     
@@ -42,8 +44,7 @@ struct ProspectsView: View {
                 .navigationTitle(title)
                 .toolbar {
                     Button("Scan",systemImage: "qrcode.viewfinder") {
-                        let prospect = Prospect(name: "New Prospect", emailAddress: "new@prospect.com", isContacted: false)
-                        modelContext.insert(prospect)
+                        isShowingScanner = true
                     }
                 }
         }
@@ -59,6 +60,9 @@ struct ProspectsView: View {
             _prospects = Query(filter: #Predicate {
                 $0.isContacted == showContactedOnly}, sort: [SortDescriptor(\Prospect.name)])
         }
+    }
+    func handleScan(result: Result<ScanResult, ScanError>) {
+        
     }
 }
 
