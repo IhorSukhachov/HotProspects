@@ -62,7 +62,7 @@ struct ProspectsView: View {
         }
     }
     func handleScan(result: Result<ScanResult, ScanError>) {
-        
+        isShowingScanner = false
     }
 }
 
