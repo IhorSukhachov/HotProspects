@@ -52,6 +52,7 @@ struct ProspectsView: View {
                         Button("Mark Contacted", systemImage: "person.crop.fill.badge.checkmark") {
                             prospect.isContacted.toggle()
                         }
+                        .tint(.green)
                     }
                 }
             }
