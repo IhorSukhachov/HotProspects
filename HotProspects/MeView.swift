@@ -24,6 +24,11 @@ struct MeView: View {
                 TextField("email address", text: $emailAddress)
                     .textContentType(.emailAddress)
                     .font(.title)
+                
+                Image(uiImage: generateQRCode(from: "\(name)\n\(emailAddress)"))
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200, height: 200)
             }
             .navigationTitle("Your Code")
            
