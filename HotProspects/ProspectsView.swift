@@ -7,6 +7,7 @@
 import CodeScanner
 import SwiftData
 import SwiftUI
+internal import AVFoundation
 
 struct ProspectsView: View {
     enum FilterType {
@@ -46,6 +47,9 @@ struct ProspectsView: View {
                     Button("Scan",systemImage: "qrcode.viewfinder") {
                         isShowingScanner = true
                     }
+                }
+                .sheet(isPresented: $isShowingScanner) {
+                    CodeScannerView(codeTypes: [.qr], simulatedData: "Ihor Sukhachov\nsample@example.com", completion: handleScan)
                 }
         }
       
