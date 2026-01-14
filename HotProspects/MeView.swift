@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct MeView: View {
+    @AppStorage("name") private var name = "Anonymous"
+    @AppStorage("emailAddress") private var emailAddress = "Anonymous@example.com"
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
     }
 }
 
