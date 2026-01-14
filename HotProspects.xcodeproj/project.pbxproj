@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E148F3532F17EE660045E082 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = E148F3522F17EE660045E082 /* CodeScanner */; };
 		E178B4CC2F1273A000B39DFA /* SamplePackage in Frameworks */ = {isa = PBXBuildFile; productRef = E178B4CB2F1273A000B39DFA /* SamplePackage */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E148F3532F17EE660045E082 /* CodeScanner in Frameworks */,
 				E178B4CC2F1273A000B39DFA /* SamplePackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +73,7 @@
 			name = HotProspects;
 			packageProductDependencies = (
 				E178B4CB2F1273A000B39DFA /* SamplePackage */,
+				E148F3522F17EE660045E082 /* CodeScanner */,
 			);
 			productName = HotProspects;
 			productReference = E1D263EA2F0FAF0200A82C05 /* HotProspects.app */;
@@ -102,6 +105,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				E178B4CA2F1273A000B39DFA /* XCRemoteSwiftPackageReference "SamplePackage" */,
+				E148F3512F17EE660045E082 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E1D263EB2F0FAF0200A82C05 /* Products */;
@@ -339,6 +343,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E148F3512F17EE660045E082 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.2;
+			};
+		};
 		E178B4CA2F1273A000B39DFA /* XCRemoteSwiftPackageReference "SamplePackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/twostraws/SamplePackage";
@@ -350,6 +362,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E148F3522F17EE660045E082 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E148F3512F17EE660045E082 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
 		E178B4CB2F1273A000B39DFA /* SamplePackage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E178B4CA2F1273A000B39DFA /* XCRemoteSwiftPackageReference "SamplePackage" */;
