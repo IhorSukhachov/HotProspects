@@ -12,7 +12,15 @@ struct MeView: View {
     @AppStorage("emailAddress") private var emailAddress = "Anonymous@example.com"
     
     var body: some View {
-        
+        NavigationStack {
+            Form {
+                TextField("name", text: $name)
+                    .textContentType(.name)
+                TextField("email address", text: $emailAddress)
+                    .textContentType(.emailAddress)
+            }
+           
+        }
     }
 }
 
