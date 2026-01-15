@@ -53,8 +53,7 @@ struct MeView: View {
         filter.message = Data(string.utf8)
         if let outputImage = filter.outputImage {
             if let cgImage = context.createCGImage(outputImage, from: outputImage.extent) {
-                qrCode = UIImage(cgImage: cgImage)
-                return qrCode
+                return UIImage(cgImage: cgImage)
             }
         }
         return UIImage(systemName: "xmark.circle") ?? UIImage()
