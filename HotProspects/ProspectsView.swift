@@ -137,6 +137,17 @@ struct ProspectsView: View {
             center.add(request)
         }
         
+        center.getNotificationSettings {
+            settings in
+            if settings.authorizationStatus == .authorized {
+                addRequest()
+            } else {
+                 center.requestAuthorization(options: [.alert, .sound, .badge]) { success, error in
+                    guard success else { return }
+                    addRequest()
+                }
+            }
+        }
     }
 }
 
