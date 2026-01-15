@@ -27,7 +27,7 @@ struct MeView: View {
                     .textContentType(.emailAddress)
                     .font(.title)
                 
-                Image(uiImage: generateQRCode(from: "\(name)\n\(emailAddress)"))
+                Image(uiImage: qrCode)
                     .interpolation(.none)
                     .resizable()
                     .scaledToFit()
@@ -38,9 +38,17 @@ struct MeView: View {
                 
             }
             .navigationTitle("Your Code")
+            .onAppear(perform: updateCode)
+            .onChange(of: name, updateCode)
+            .onChange(of: emailAddress, updateCode)
            
         }
     }
+    
+    func updateCode() {
+        qrCode = generateQRCode(from: "\(name)\n\(emailAddress)")
+    }
+    
     func generateQRCode(from string: String) -> UIImage {
         filter.message = Data(string.utf8)
         if let outputImage = filter.outputImage {
