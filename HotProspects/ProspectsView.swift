@@ -36,13 +36,21 @@ struct ProspectsView: View {
     var body: some View {
         NavigationStack {
             List(prospects, selection: $selectedProspects) {prospect in
-                VStack(alignment: .leading) {
-                        Text(prospect.name)
-                            .font(.headline)
-                        Text(prospect.emailAddress)
-                            .foregroundStyle(.secondary)
-                    
+                
+                HStack {
+                    VStack(alignment: .leading) {
+                            Text(prospect.name)
+                                .font(.headline)
+                            Text(prospect.emailAddress)
+                                .foregroundStyle(.secondary)
+                        
+                    }
+                    Spacer()
+                    if filter == .none {
+                        prospect.isContacted ? Image(systemName: "checkmark") : Image(systemName: "xmark")
+                    }
                 }
+
                 .swipeActions {
                     Button("Delete contact", systemImage: "trash", role: .destructive) {
                         modelContext.delete(prospect)
