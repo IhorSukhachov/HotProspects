@@ -143,21 +143,6 @@ struct ProspectsView: View {
       
     }
     
-    init(filter: FilterType) {
-        self.filter = filter
-
-        let predicate: Predicate<Prospect>? = {
-            switch filter {
-            case .none:
-                return nil 
-            case .contacted:
-                return #Predicate { $0.isContacted }
-            case .uncontacted:
-                return #Predicate { !$0.isContacted }
-            }
-        }()
-    }
-    
     func handleScan(result: Result<ScanResult, ScanError>) {
         isShowingScanner = false
         
