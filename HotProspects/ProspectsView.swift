@@ -51,6 +51,7 @@ struct ProspectsView: View {
                                 .font(.headline)
                             Text(prospect.emailAddress)
                                 .foregroundStyle(.secondary)
+                            Text(prospect.createdAt.formatted())
                             
                         }
                         Spacer()
@@ -86,7 +87,7 @@ struct ProspectsView: View {
                     }
                 }
                 .tag(prospect)
-            }
+            }.id(sortOption)
                 .navigationTitle(title)
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
@@ -124,21 +125,30 @@ struct ProspectsView: View {
     
     init(filter: FilterType) {
         self.filter = filter
+
+        let predicate: Predicate<Prospect>? = {
+            switch filter {
+            case .none:
+                return nil  // no filter, show all
+            case .contacted:
+                return #Predicate { $0.isContacted }
+            case .uncontacted:
+                return #Predicate { !$0.isContacted }
+            }
+        }()
+
         let sortDescriptors: [SortDescriptor<Prospect>] = {
             switch UserDefaults.standard.string(forKey: "sortOption") {
             case SortOption.recent.rawValue:
-                return [SortDescriptor(\Prospect.createdAt, order: .reverse)]
+                return [SortDescriptor(\.createdAt, order: .reverse)]
             default:
-                return [SortDescriptor(\Prospect.name)]
+                return [SortDescriptor(\.name)]
             }
         }()
-        if filter != .none {
-            let showContactedOnly = filter == .contacted
-            
-            _prospects = Query(filter: #Predicate {
-                $0.isContacted == showContactedOnly}, sort: sortDescriptors)
-        }
+
+        _prospects = Query(filter: predicate, sort: sortDescriptors)
     }
+    
     func handleScan(result: Result<ScanResult, ScanError>) {
         isShowingScanner = false
         
