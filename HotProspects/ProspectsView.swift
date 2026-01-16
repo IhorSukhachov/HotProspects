@@ -21,7 +21,7 @@ struct ProspectsView: View {
     }
     @AppStorage("sortOption") private var sortOption: SortOption = .name
     @Environment(\.modelContext) var modelContext
-    @Query(sort: \Prospect.name) var prospects: [Prospect]
+    @Query var prospects: [Prospect]
     
     @State private var isShowingScanner = false
     @State private var selectedProspects =  Set<Prospect>()
@@ -94,6 +94,17 @@ struct ProspectsView: View {
                         isShowingScanner = true
                             }
                     }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Menu {
+                            Picker("Sort by", selection: $sortOption) {
+                                ForEach(SortOption.allCases, id: \.self) {
+                                    Text($0.rawValue)
+                                }
+                            }
+                        } label: {
+                            Image(systemName: "arrow.up.arrow.down")
+                        }
+                    }
                     ToolbarItem(placement: .topBarLeading) {
                         EditButton()
                     }
@@ -113,12 +124,19 @@ struct ProspectsView: View {
     
     init(filter: FilterType) {
         self.filter = filter
-        
+        let sortDescriptors: [SortDescriptor<Prospect>] = {
+            switch UserDefaults.standard.string(forKey: "sortOption") {
+            case SortOption.recent.rawValue:
+                return [SortDescriptor(\Prospect.createdAt, order: .reverse)]
+            default:
+                return [SortDescriptor(\Prospect.name)]
+            }
+        }()
         if filter != .none {
             let showContactedOnly = filter == .contacted
             
             _prospects = Query(filter: #Predicate {
-                $0.isContacted == showContactedOnly}, sort: [SortDescriptor(\Prospect.name)])
+                $0.isContacted == showContactedOnly}, sort: sortDescriptors)
         }
     }
     func handleScan(result: Result<ScanResult, ScanError>) {
