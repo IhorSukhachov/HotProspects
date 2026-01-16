@@ -47,7 +47,8 @@ struct ProspectsView: View {
                     }
                     Spacer()
                     if filter == .none {
-                        prospect.isContacted ? Image(systemName: "checkmark") : Image(systemName: "xmark")
+                        prospect.isContacted ? Image(systemName: "person.crop.circle.fill.badge.checkmark").foregroundStyle(.green) : Image(systemName: "person.crop.circle.badge.xmark").foregroundStyle(.red)
+                            
                     }
                 }
 
