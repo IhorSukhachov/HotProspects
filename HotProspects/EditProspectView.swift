@@ -4,15 +4,19 @@
 //
 //  Created by Ihor Sukhachov on 16.01.2026.
 //
-
+import SwiftData
 import SwiftUI
 
 struct EditProspectView: View {
+    @Bindable var prospect: Prospect
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TextField(prospect.name, text: $prospect.name)
+        TextField(prospect.emailAddress, text: $prospect.emailAddress)
     }
 }
 
 #Preview {
-    EditProspectView()
+    EditProspectView(prospect: Prospect(name: "Test", emailAddress: "Test", isContacted: false))
+        .modelContainer(for: Prospect.self)
 }
