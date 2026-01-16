@@ -14,6 +14,12 @@ struct ProspectsView: View {
     enum FilterType {
         case none, contacted, uncontacted
     }
+    
+    enum SortOption: String, CaseIterable {
+        case name = "Name"
+        case recent = "Most Recent"
+    }
+    
     @Environment(\.modelContext) var modelContext
     @Query(sort: \Prospect.name) var prospects: [Prospect]
     
