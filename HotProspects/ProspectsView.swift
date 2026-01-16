@@ -21,10 +21,29 @@ struct ProspectsView: View {
     }
     @AppStorage("sortOption") private var sortOption: SortOption = .name
     @Environment(\.modelContext) var modelContext
-    @Query var prospects: [Prospect]
+    @Query(sort: \Prospect.createdAt) private var allProspects: [Prospect]
     
     @State private var isShowingScanner = false
     @State private var selectedProspects =  Set<Prospect>()
+    
+    private var prospects: [Prospect] {
+        var filtered = allProspects
+        switch filter {
+        case .contacted:
+            filtered = filtered.filter { $0.isContacted }
+        case .uncontacted:
+            filtered = filtered.filter { !$0.isContacted }
+        case .none:
+            break
+        }
+
+        switch sortOption {
+        case .name:
+            return filtered.sorted { $0.name < $1.name }
+        case .recent:
+            return filtered.sorted { $0.createdAt > $1.createdAt }
+        }
+    }
     
     let filter: FilterType
     
@@ -87,7 +106,7 @@ struct ProspectsView: View {
                     }
                 }
                 .tag(prospect)
-            }.id(sortOption)
+            }
                 .navigationTitle(title)
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
@@ -120,6 +139,7 @@ struct ProspectsView: View {
                     CodeScannerView(codeTypes: [.qr], simulatedData: "Ihor Sukhachov\nsample@example.com", completion: handleScan)
                 }
         }
+  
       
     }
     
@@ -129,24 +149,13 @@ struct ProspectsView: View {
         let predicate: Predicate<Prospect>? = {
             switch filter {
             case .none:
-                return nil  // no filter, show all
+                return nil 
             case .contacted:
                 return #Predicate { $0.isContacted }
             case .uncontacted:
                 return #Predicate { !$0.isContacted }
             }
         }()
-
-        let sortDescriptors: [SortDescriptor<Prospect>] = {
-            switch UserDefaults.standard.string(forKey: "sortOption") {
-            case SortOption.recent.rawValue:
-                return [SortDescriptor(\.createdAt, order: .reverse)]
-            default:
-                return [SortDescriptor(\.name)]
-            }
-        }()
-
-        _prospects = Query(filter: predicate, sort: sortDescriptors)
     }
     
     func handleScan(result: Result<ScanResult, ScanError>) {
