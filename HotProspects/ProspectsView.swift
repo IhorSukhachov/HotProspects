@@ -19,7 +19,7 @@ struct ProspectsView: View {
         case name = "Name"
         case recent = "Most Recent"
     }
-    
+    @AppStorage("sortOption") private var sortOption: SortOption = .name
     @Environment(\.modelContext) var modelContext
     @Query(sort: \Prospect.name) var prospects: [Prospect]
     
